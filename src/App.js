@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 
 function App() {
-  const handleLoginSuccess = (credentialResponse) =>{
+  const handleLoginSuccess = (credentialResponse) => {
     const decoded = jwtDecode(credentialResponse.credential);
-    console.log("User Info:",decoded);
+    console.log("User Info:", decoded);
     alert(`Welcome ${decoded.name}`);
   };
+
   const handleLoginError = () => {
     console.log("Login failed");
     alert("Login failed");
   };
+
   return (
-    <div style = {{display:"flex",justifyContent:"center",marrginTop:"100px"}}>
+    <div style={{ display: "flex", justifyContent: "center", marginTop: "100px" }}>
       <div>
         <h2>Login with Google</h2>
-        <GoogleLogin onSuccess={handleLoginSuccess} onError={handleLoginError}/>
+        <GoogleLogin onSuccess={handleLoginSuccess} onError={handleLoginError} />
       </div>
     </div>
   );
